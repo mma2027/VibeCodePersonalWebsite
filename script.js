@@ -184,6 +184,109 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 3000);
             });
         });
+
+        // Project upload functionality
+        const uploadBtn = document.getElementById('upload-btn');
+        const projectFile = document.getElementById('project-file');
+        const uploadBox = document.getElementById('upload-box');
+        const submitProjectBtn = document.getElementById('submit-project-btn');
+        const projectsList = document.getElementById('projects-list');
+        let uploadedFiles = [];
+
+        if (uploadBtn && projectFile) {
+            // Click to browse files
+            uploadBtn.addEventListener('click', () => {
+                projectFile.click();
+            });
+
+            // File selection handler
+            projectFile.addEventListener('change', (e) => {
+                const files = Array.from(e.target.files);
+                if (files.length > 0) {
+                    uploadedFiles = files;
+                    uploadBox.querySelector('p').textContent = `${files.length} file(s) selected`;
+                    uploadBox.querySelector('.upload-icon').textContent = '✅';
+                }
+            });
+
+            // Drag and drop functionality
+            uploadBox.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadBox.style.borderColor = '#6B7FFF';
+                uploadBox.style.backgroundColor = 'rgba(107, 127, 255, 0.05)';
+            });
+
+            uploadBox.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                uploadBox.style.borderColor = '#ddd';
+                uploadBox.style.backgroundColor = 'transparent';
+            });
+
+            uploadBox.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadBox.style.borderColor = '#ddd';
+                uploadBox.style.backgroundColor = 'transparent';
+
+                const files = Array.from(e.dataTransfer.files);
+                if (files.length > 0) {
+                    uploadedFiles = files;
+                    uploadBox.querySelector('p').textContent = `${files.length} file(s) selected`;
+                    uploadBox.querySelector('.upload-icon').textContent = '✅';
+                }
+            });
+        }
+
+        // Submit project
+        if (submitProjectBtn) {
+            submitProjectBtn.addEventListener('click', () => {
+                const projectName = document.getElementById('project-name').value;
+                const projectDescription = document.getElementById('project-description').value;
+                const projectTags = document.getElementById('project-tags').value;
+
+                if (!projectName || !projectDescription) {
+                    alert('Please fill in project name and description!');
+                    return;
+                }
+
+                // Create project card
+                const projectItem = document.createElement('div');
+                projectItem.className = 'project-item';
+
+                const tags = projectTags.split(',').map(tag => tag.trim()).filter(tag => tag);
+                const tagsHTML = tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+
+                projectItem.innerHTML = `
+                    <div class="project-icon">💻</div>
+                    <h4>${projectName}</h4>
+                    <p>${projectDescription}</p>
+                    <div class="project-tags">
+                        ${tagsHTML || '<span class="tag">New</span>'}
+                    </div>
+                    ${uploadedFiles.length > 0 ? `<div class="project-files">📎 ${uploadedFiles.length} file(s)</div>` : ''}
+                `;
+
+                // Remove sample project if it exists
+                const sampleProject = projectsList.querySelector('.project-item');
+                if (sampleProject && sampleProject.querySelector('h4').textContent === 'Sample Project') {
+                    sampleProject.remove();
+                }
+
+                // Add new project
+                projectsList.appendChild(projectItem);
+
+                // Reset form
+                document.getElementById('project-name').value = '';
+                document.getElementById('project-description').value = '';
+                document.getElementById('project-tags').value = '';
+                uploadedFiles = [];
+                uploadBox.querySelector('p').textContent = 'Drop files here or click to browse';
+                uploadBox.querySelector('.upload-icon').textContent = '📁';
+                projectFile.value = '';
+
+                // Show success message
+                alert('Project uploaded successfully!');
+            });
+        }
     }
 
     // ================================
@@ -195,6 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', () => {
                 const textToCopy = btn.getAttribute('data-copy');
                 const feedback = btn.nextElementSibling;
+                const originalText = btn.textContent;
 
                 // Copy to clipboard
                 navigator.clipboard.writeText(textToCopy).then(() => {
@@ -205,13 +309,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Reset after 2 seconds
                     setTimeout(() => {
                         feedback.classList.remove('show');
-                        btn.textContent = 'Copy Email';
+                        btn.textContent = originalText;
                     }, 2000);
                 }).catch(err => {
                     console.error('Failed to copy:', err);
                     btn.textContent = 'Failed';
                     setTimeout(() => {
-                        btn.textContent = 'Copy Email';
+                        btn.textContent = originalText;
                     }, 2000);
                 });
             });
