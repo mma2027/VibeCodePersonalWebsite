@@ -89,6 +89,45 @@
             </div>
         </section>
 
+        <section class="project-upload fade-in-up">
+            <div class="project-upload-content">
+                <h2>My Coding Projects</h2>
+                <p>Upload and share your favorite projects!</p>
+
+                <div class="upload-section">
+                    <div class="upload-box" id="upload-box">
+                        <div class="upload-icon">📁</div>
+                        <h3>Upload Project</h3>
+                        <p>Drop files here or click to browse</p>
+                        <input type="file" id="project-file" accept=".zip,.pdf,.jpg,.png,.txt,.md" multiple hidden>
+                        <button class="btn btn-primary" id="upload-btn">Choose Files</button>
+                    </div>
+
+                    <div class="project-form" id="project-form">
+                        <h3>Project Details</h3>
+                        <input type="text" id="project-name" class="form-input" placeholder="Project Name" required>
+                        <textarea id="project-description" class="form-textarea" placeholder="Project Description" rows="4"></textarea>
+                        <input type="text" id="project-tags" class="form-input" placeholder="Tags (comma separated)">
+                        <button class="btn btn-secondary" id="submit-project-btn">Submit Project</button>
+                    </div>
+                </div>
+
+                <div class="projects-display">
+                    <h3>Uploaded Projects</h3>
+                    <div id="projects-list" class="projects-grid">
+                        <div class="project-item">
+                            <div class="project-icon">💻</div>
+                            <h4>Sample Project</h4>
+                            <p>This is where your projects will appear!</p>
+                            <div class="project-tags">
+                                <span class="tag">Demo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="fun-facts fade-in-up">
             <div class="fun-facts-content">
                 <h2>Random Fun Fact</h2>
