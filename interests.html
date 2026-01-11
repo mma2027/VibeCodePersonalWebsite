@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maxfield Ma - Interests</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">MM</div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="interests.html" class="nav-link active">Interests</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="page-header fade-in">
+            <h1>My Interests</h1>
+            <p>Things I'm passionate about and love doing</p>
+        </section>
+
+        <section class="interests-grid fade-in-up">
+            <div class="interest-card" data-interest="0">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-icon">🎮</div>
+                        <h3>Gaming</h3>
+                        <p>Click to learn more</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Gaming</h3>
+                        <p>I love competitive gaming in League of Legends and creative building in Minecraft. Gaming is where I challenge myself strategically and let my creativity run wild!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interest-card" data-interest="1">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-icon">💻</div>
+                        <h3>Coding</h3>
+                        <p>Click to learn more</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Coding</h3>
+                        <p>Programming is my passion! I love building projects, solving problems, and learning new technologies. Every line of code is a puzzle waiting to be solved.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interest-card" data-interest="2">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-icon">🎵</div>
+                        <h3>Music</h3>
+                        <p>Click to learn more</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Music</h3>
+                        <p>I play both violin and piano! Music is my creative outlet and helps me express emotions that words can't capture. Practice makes progress!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interest-card" data-interest="3">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-icon">🎾</div>
+                        <h3>Tennis</h3>
+                        <p>Click to learn more</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Tennis</h3>
+                        <p>Tennis keeps me active and competitive. I love the mental and physical challenge of every match. It's a great way to stay fit and have fun!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="fun-facts fade-in-up">
+            <div class="fun-facts-content">
+                <h2>Random Fun Fact</h2>
+                <div class="fact-display" id="fact-display">
+                    Click the button to discover a fun fact about me!
+                </div>
+                <button class="btn btn-primary" id="fact-btn">Get Random Fact</button>
+            </div>
+        </section>
+
+        <section class="quiz fade-in-up">
+            <div class="quiz-content">
+                <h2>Quick Quiz: Guess My Favorite!</h2>
+                <div id="quiz-container">
+                    <div class="quiz-question" id="quiz-question">
+                        What's my favorite game to play?
+                    </div>
+                    <div class="quiz-options">
+                        <button class="quiz-option" data-answer="correct">League of Legends</button>
+                        <button class="quiz-option" data-answer="wrong">Fortnite</button>
+                        <button class="quiz-option" data-answer="wrong">Call of Duty</button>
+                        <button class="quiz-option" data-answer="wrong">Valorant</button>
+                    </div>
+                    <div class="quiz-result" id="quiz-result"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Maxfield Ma. Made with creativity and code.</p>
+    </footer>
+
+    <script src="particles.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
